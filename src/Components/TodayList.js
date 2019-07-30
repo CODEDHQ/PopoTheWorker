@@ -8,7 +8,7 @@ class ToDoList extends Component {
     const list = toDoStore.toDoItems.map(item => <ToDoItem item={item} />);
     return (
       <div>
-        <h3>To Do</h3>
+        <h3>Today</h3>
         <div className="list-group">{list}</div>
       </div>
     );

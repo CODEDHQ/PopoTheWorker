@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ToDoList from "./Components/ToDoList";
+import TodayList from "./Components/TodayList";
 import toDoStore from "./Stores/ToDoStore";
 
 class App extends Component {
@@ -48,7 +48,7 @@ class App extends Component {
             Add Task
           </button>
         </div>
-        <ToDoList taskList={this.state.taskList} />
+        <TodayList taskList={this.state.taskList} />
       </div>
     );
   }
