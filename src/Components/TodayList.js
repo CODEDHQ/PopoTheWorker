@@ -5,7 +5,9 @@ import { observer } from "mobx-react";
 
 class ToDoList extends Component {
   render() {
-    const list = toDoStore.toDoItems.map(item => <ToDoItem item={item} />);
+    const list = toDoStore.toDoItems.map(item => (
+      <ToDoItem key={item.id} item={item} />
+    ));
     return (
       <div>
         <h3>Today</h3>
