@@ -1,15 +1,22 @@
 import React, { Component } from "react";
 import toDoStore from "../Stores/ToDoStore";
+import Datetime from "react-datetime";
+import "../DatetimePicker.css";
 
 class CreateTaskForm extends Component {
   state = {
     taskText: "",
-    taskDetails: ""
+    taskDetails: "",
+    moment: ""
   };
   addTask() {
     if (this.state.taskText) {
-      toDoStore.addTask(this.state.taskText, this.state.taskDetails);
-      this.setState({ taskText: "", taskDetails: "" });
+      toDoStore.addTask(
+        this.state.taskText,
+        this.state.taskDetails,
+        this.state.moment
+      );
+      this.setState({ taskText: "", taskDetails: "", moment: "" });
     }
   }
   render() {
@@ -37,6 +44,13 @@ class CreateTaskForm extends Component {
           onChange={e => this.setState({ taskDetails: e.target.value })}
           placeholder="Optional details"
           value={this.state.taskDetails}
+        />
+        <Datetime
+          defaultValue="Optional Due Date"
+          value={this.state.moment}
+          onChange={momentObj => {
+            this.setState({ moment: momentObj });
+          }}
         />
         <button className="btn btn-primary" onClick={this.addTask.bind(this)}>
           Add Task
