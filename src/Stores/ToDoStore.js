@@ -1,7 +1,9 @@
 import { decorate, observable } from "mobx";
 
 class ToDoStore {
-  toDoItems = [];
+  toDoItems = [
+    { task: "Default task", details: "lorem ipsum", id: 83756384763845763587 }
+  ];
   doneItems = [];
   idCounter = 0;
   addTask = (taskText, taskDetails) => {
