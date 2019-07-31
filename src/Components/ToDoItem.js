@@ -19,7 +19,6 @@ class ToDoItem extends Component {
           </small>
         </div>
         <p className="mb-1">{this.props.item.details}</p>
-        <small>{this.props.item.dueDate}</small>
       </div>
     );
   }

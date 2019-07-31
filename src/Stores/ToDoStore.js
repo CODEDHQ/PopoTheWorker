@@ -4,11 +4,10 @@ class ToDoStore {
   toDoItems = [];
   doneItems = [];
   idCounter = 0;
-  addTask = (taskText, taskDetails, dueDate) => {
+  addTask = (taskText, taskDetails) => {
     this.toDoItems.push({
       task: taskText,
       details: taskDetails,
-      dueDate: dueDate,
       id: this.idCounter
     });
     this.idCounter++;
