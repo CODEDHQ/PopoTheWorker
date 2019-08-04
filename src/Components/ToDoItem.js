@@ -9,7 +9,8 @@ class ToDoItem extends Component {
     toDoStore.doneTask(this.props.item.id);
   }
   deleteTask() {
-    toDoStore.deleteTask(this.props.item.id);
+    if (window.confirm("Are you sure?"))
+      toDoStore.deleteTask(this.props.item.id);
   }
   render() {
     return (
