@@ -14,8 +14,14 @@ class ToDoStore {
     });
     this.idCounter++;
   };
-  doneTask = taskText => {
-    this.toDoItems.find(item => item === taskText);
+  doneTask = taskId => {
+    let task = this.toDoItems.find(item => item.id === taskId);
+    this.doneItems.push(task);
+    this.toDoItems = this.toDoItems.filter(item => item.id !== taskId);
+  };
+  deleteTask = taskId => {
+    let task = this.toDoItems.find(item => item.id === taskId);
+    this.toDoItems = this.toDoItems.filter(item => item.id !== taskId);
   };
 }
 
