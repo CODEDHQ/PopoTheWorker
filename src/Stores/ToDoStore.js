@@ -1,8 +1,13 @@
 import { decorate, observable } from "mobx";
-
+import moment from "moment";
 class ToDoStore {
   toDoItems = [
-    { task: "Default task", details: "lorem ipsum", id: 83756384763845763587 }
+    {
+      task: "Default task",
+      details: "lorem ipsum",
+      moment: moment(),
+      id: 83756384763845763587
+    }
   ];
   doneItems = [];
   idCounter = 0;
