@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TodayList from "./Components/TodayList";
+import FutureList from "./Components/FutureList";
 import CreateTaskForm from "./Components/CreateTaskForm";
 
 class App extends Component {
@@ -8,6 +9,7 @@ class App extends Component {
       <div className="container">
         <CreateTaskForm />
         <TodayList />
+        <FutureList />
       </div>
     );
   }

@@ -14,13 +14,13 @@ class ToDoItem extends Component {
   }
   render() {
     let dueDate;
-    if (this.props.item.moment) {
-      dueDate = this.props.item.moment.fromNow();
+    if (this.props.item.due) {
+      dueDate = this.props.item.due.fromNow();
     }
     return (
       <div className="list-group-item">
         <div className="d-flex justify-content-between">
-          <div class="d-flex align-items-center">
+          <div className="d-flex align-items-center">
             <FontAwesomeIcon
               style={{ cursor: "pointer" }}
               icon={faSquare}
@@ -28,9 +28,8 @@ class ToDoItem extends Component {
               onClick={this.checkTask.bind(this)}
             />
           </div>
-          <div class="flex-grow-1 p-3 text-wrap">
+          <div className="flex-grow-1 p-3 text-wrap">
             <h5 className="mb-1">{this.props.item.task}</h5>
-            <p className="mb-1">{this.props.item.details}</p>
           </div>
           <div>
             <FontAwesomeIcon

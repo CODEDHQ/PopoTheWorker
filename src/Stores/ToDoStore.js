@@ -1,23 +1,30 @@
 import { decorate, observable } from "mobx";
 import moment from "moment";
+
 class ToDoStore {
   toDoItems = [
     {
       task: "Default task",
       details: "lorem ipsum",
-      moment: moment(),
+      due: moment(),
       id: 83756384763845763587
     }
   ];
   doneItems = [];
+  futureItems = [];
   idCounter = 0;
-  addTask = (taskText, taskDetails, moment) => {
-    this.toDoItems.push({
+  addTask = (taskText, taskDetails, due) => {
+    let future = false;
+    if (!due) due = moment();
+    let task = {
       task: taskText,
       details: taskDetails,
-      moment: moment,
+      due: due,
       id: this.idCounter
-    });
+    };
+    future = due.isAfter(moment(), "day");
+    if (future) this.futureItems.push(task);
+    else this.toDoItems.push(task);
     this.idCounter++;
   };
   doneTask = taskId => {
@@ -32,7 +39,8 @@ class ToDoStore {
 }
 
 decorate(ToDoStore, {
-  toDoItems: observable
+  toDoItems: observable,
+  futureItems: observable
 });
 
 const toDoStore = new ToDoStore();
