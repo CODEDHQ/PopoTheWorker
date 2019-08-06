@@ -18,15 +18,18 @@ class Task extends Component {
       dueDate = <small>{this.props.item.due.fromNow()}</small>;
     }
     let taskHead;
-    if (this.props.item.label)
+    if (this.props.item.labels) {
+      let labels = this.props.item.labels.map(label => {
+        return (
+          <span className="badge badge-pill badge-primary mr-auto">
+            {label.value}
+          </span>
+        );
+      });
       taskHead = (
         <div>
           <div className="d-flex justify-content-between">
-            <div className="flex-row">
-              <span className="badge badge-pill badge-primary mr-auto">
-                {this.props.item.label}
-              </span>
-            </div>
+            <div className="flex-row">{labels}</div>
             <FontAwesomeIcon
               className="ml-auto"
               style={{ cursor: "pointer" }}
@@ -49,7 +52,7 @@ class Task extends Component {
           </div>
         </div>
       );
-    else
+    } else
       taskHead = (
         <div className="d-flex justify-content-between">
           <div className="d-flex align-items-center">

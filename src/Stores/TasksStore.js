@@ -10,6 +10,7 @@ class ToDoStore {
       task: "Default task",
       details: "lorem ipsum",
       due: moment(),
+      labels: [],
       id: 83756384763845763587
     }
   ];
@@ -17,13 +18,15 @@ class ToDoStore {
   todayTasks = [];
   futureTasks = [];
   idCounter = 0;
-  addTask = (taskText, taskDetails, due) => {
+  labelOptions = ["Personal", "Work"];
+  addTask = (taskText, taskDetails, due, labels) => {
     let today = true;
     if (due) today = due.isSameOrBefore(moment(), "day");
     let task = {
       task: taskText,
       details: taskDetails,
       due: due,
+      labels: labels,
       id: this.idCounter
     };
     this.pendingTasks.push(task);

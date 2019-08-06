@@ -7,8 +7,8 @@ class CreateTaskForm extends Component {
   state = {
     taskText: "",
     taskDetails: "",
-    due: ""
-    label: ""
+    due: "",
+    labels: []
   };
   addTask() {
     if (this.state.taskText) {
@@ -16,12 +16,27 @@ class CreateTaskForm extends Component {
         this.state.taskText,
         this.state.taskDetails,
         this.state.due,
-        this.state.label
+        this.state.labels
       );
-      this.setState({ taskText: "", taskDetails: "", due: "", label: "" });
+      this.setState({ taskText: "", taskDetails: "", due: "", labels: [] });
     }
   }
+  labelSelect(e) {
+    let labels = Array.from(e.target.options);
+    let selectedLabels = labels.filter(label => label.selected === true);
+    this.setState({ labels: selectedLabels });
+  }
   render() {
+    let labelOptions = tasksStore.labelOptions.map(label => (
+      <option
+        value={label}
+        selected={
+          this.state.labels.filter(lbl => lbl.value === label).length > 0
+        }
+      >
+        {label}
+      </option>
+    ));
     return (
       <div className="form-group">
         <input
@@ -47,18 +62,13 @@ class CreateTaskForm extends Component {
           placeholder="Optional details"
           value={this.state.taskDetails}
         />
-        <input
-          type="text"
-          className="form-control"
-          onKeyPress={e => {
-            if (e.charCode === 13) {
-              this.addTask();
-            }
-          }}
-          onChange={e => this.setState({ label: e.target.value })}
-          value={this.state.label}
-          placeholder="Optional label"
-        />
+        <select
+          className="custom-select"
+          multiple
+          onChange={this.labelSelect.bind(this)}
+        >
+          {labelOptions}
+        </select>
         <Datetime
           defaultValue="Optional Due Date"
           value={this.state.due}
