@@ -24,10 +24,7 @@ class Task extends Component {
           <div className="d-flex justify-content-between">
             <div className="flex-row">
               <span className="badge badge-pill badge-primary mr-auto">
-                Primary
-              </span>
-              <span className="badge badge-pill badge-primary mr-auto">
-                Primary
+                {this.props.item.label}
               </span>
             </div>
             <FontAwesomeIcon

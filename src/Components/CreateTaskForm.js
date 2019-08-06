@@ -8,15 +8,17 @@ class CreateTaskForm extends Component {
     taskText: "",
     taskDetails: "",
     due: ""
+    label: ""
   };
   addTask() {
     if (this.state.taskText) {
       tasksStore.addTask(
         this.state.taskText,
         this.state.taskDetails,
-        this.state.due
+        this.state.due,
+        this.state.label
       );
-      this.setState({ taskText: "", taskDetails: "", due: "" });
+      this.setState({ taskText: "", taskDetails: "", due: "", label: "" });
     }
   }
   render() {
@@ -44,6 +46,18 @@ class CreateTaskForm extends Component {
           onChange={e => this.setState({ taskDetails: e.target.value })}
           placeholder="Optional details"
           value={this.state.taskDetails}
+        />
+        <input
+          type="text"
+          className="form-control"
+          onKeyPress={e => {
+            if (e.charCode === 13) {
+              this.addTask();
+            }
+          }}
+          onChange={e => this.setState({ label: e.target.value })}
+          value={this.state.label}
+          placeholder="Optional label"
         />
         <Datetime
           defaultValue="Optional Due Date"
