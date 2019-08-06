@@ -15,14 +15,14 @@ class ToDoStore {
   idCounter = 0;
   addTask = (taskText, taskDetails, due) => {
     let future = false;
-    if (!due) due = moment();
     let task = {
       task: taskText,
       details: taskDetails,
       due: due,
       id: this.idCounter
     };
-    future = due.isAfter(moment(), "day");
+    if (due) future = due.isAfter(moment(), "day");
+    else future = false;
     if (future) this.futureItems.push(task);
     else this.toDoItems.push(task);
     this.idCounter++;

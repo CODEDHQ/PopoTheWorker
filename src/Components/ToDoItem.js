@@ -15,7 +15,7 @@ class ToDoItem extends Component {
   render() {
     let dueDate;
     if (this.props.item.due) {
-      dueDate = this.props.item.due.fromNow();
+      dueDate = <small>{this.props.item.due.fromNow()}</small>;
     }
     return (
       <div className="list-group-item">
@@ -40,7 +40,7 @@ class ToDoItem extends Component {
           </div>
         </div>
         <p className="mb-1">{this.props.item.details}</p>
-        <small>{dueDate}</small>
+        {dueDate}
       </div>
     );
   }
