@@ -26,15 +26,40 @@ class ToDoStore {
     if (future) this.futureItems.push(task);
     else this.toDoItems.push(task);
     this.idCounter++;
+    this.updateLocalStorage();
   };
   doneTask = taskId => {
     let task = this.toDoItems.find(item => item.id === taskId);
     this.doneItems.push(task);
     this.toDoItems = this.toDoItems.filter(item => item.id !== taskId);
+    this.updateLocalStorage();
   };
   deleteTask = taskId => {
     let task = this.toDoItems.find(item => item.id === taskId);
     this.toDoItems = this.toDoItems.filter(item => item.id !== taskId);
+    this.updateLocalStorage();
+  };
+  updateLocalStorage = () => {
+    // This next line will stringify the tasks, including the moment objects stored as "due".
+    let tasks = JSON.stringify({
+      today: this.toDoItems,
+      future: this.futureItems
+    });
+    localStorage.setItem("tasks", tasks);
+  };
+  retrieveFromLocalStorage = () => {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    if (tasks) {
+      // The next two iterations convert a stringified due date to a moment object.
+      tasks.today.forEach(task => {
+        if (task.due) task.due = moment(task.due);
+      });
+      tasks.future.forEach(task => {
+        if (task.due) task.due = moment(task.due);
+      });
+      this.toDoItems = tasks.today;
+      this.futureItems = tasks.future;
+    }
   };
 }
 
