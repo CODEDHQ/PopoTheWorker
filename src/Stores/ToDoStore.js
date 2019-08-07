@@ -36,14 +36,14 @@ class ToDoStore {
   };
   deleteTask = taskId => {
     let task = this.toDoItems.find(item => item.id === taskId);
-    this.toDoItems = this.toDoItems.filter(item => item.id !== taskId);
     this.updateLocalStorage();
   };
   updateLocalStorage = () => {
     // This next line will stringify the tasks, including the moment objects stored as "due".
     let tasks = JSON.stringify({
       today: this.toDoItems,
-      future: this.futureItems
+      future: this.futureItems,
+      idCounter: this.idCounter
     });
     localStorage.setItem("tasks", tasks);
   };
@@ -59,6 +59,7 @@ class ToDoStore {
       });
       this.toDoItems = tasks.today;
       this.futureItems = tasks.future;
+      this.idCounter = tasks.idCounter;
     }
   };
 }
