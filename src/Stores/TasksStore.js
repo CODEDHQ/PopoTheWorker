@@ -67,7 +67,8 @@ class ToDoStore {
       today: this.todayTasks,
       future: this.futureTasks,
       done: this.doneTasks,
-      idCounter: this.idCounter
+      idCounter: this.idCounter,
+      labels: this.labelOptions
     });
     localStorage.setItem("tasks", tasks);
   };
@@ -89,6 +90,7 @@ class ToDoStore {
       this.futureTasks = tasks.future;
       this.doneTasks = tasks.done;
       this.idCounter = tasks.idCounter;
+      this.labelOptions = tasks.labels;
     }
   };
 }
