@@ -30,12 +30,25 @@ class ToDoStore {
   };
   doneTask = taskId => {
     let task = this.toDoItems.find(item => item.id === taskId);
+    if (task) {
+      this.toDoItems = this.toDoItems.filter(item => item.id !== taskId);
+    } else {
+      task = this.futureItems.find(item => item.id === taskId);
+      this.futureItems = this.futureItems.filter(item => item.id !== taskId);
+    }
     this.doneItems.push(task);
-    this.toDoItems = this.toDoItems.filter(item => item.id !== taskId);
     this.updateLocalStorage();
   };
   deleteTask = taskId => {
     let task = this.toDoItems.find(item => item.id === taskId);
+    if (this.toDoItems.includes(task)) {
+      this.toDoItems = this.toDoItems.filter(item => item.id !== taskId);
+    } else {
+      task = this.futureItems.find(item => item.id === taskId);
+      if (this.futureItems.includes(task)) {
+        this.futureItems = this.futureItems.filter(item => item.id !== taskId);
+      }
+    }
     this.updateLocalStorage();
   };
   updateLocalStorage = () => {
