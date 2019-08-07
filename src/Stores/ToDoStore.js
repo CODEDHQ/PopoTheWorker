@@ -56,6 +56,7 @@ class ToDoStore {
     let tasks = JSON.stringify({
       today: this.toDoItems,
       future: this.futureItems,
+      done: this.doneItems,
       idCounter: this.idCounter
     });
     localStorage.setItem("tasks", tasks);
@@ -72,6 +73,7 @@ class ToDoStore {
       });
       this.toDoItems = tasks.today;
       this.futureItems = tasks.future;
+      this.doneItems = tasks.done;
       this.idCounter = tasks.idCounter;
     }
   };
