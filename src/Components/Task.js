@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faSquare } from "@fortawesome/free-regular-svg-icons";
-import toDoStore from "../Stores/ToDoStore";
+import tasksStore from "../Stores/TasksStore";
 
-class ToDoItem extends Component {
+class Task extends Component {
   checkTask() {
-    toDoStore.doneTask(this.props.item.id);
+    tasksStore.doneTask(this.props.item.id);
   }
   deleteTask() {
     if (window.confirm("Are you sure?"))
-      toDoStore.deleteTask(this.props.item.id);
+      tasksStore.deleteTask(this.props.item.id);
   }
   render() {
     let dueDate;
@@ -46,4 +46,4 @@ class ToDoItem extends Component {
   }
 }
 
-export default ToDoItem;
+export default Task;

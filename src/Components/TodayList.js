@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import ToDoItem from "./ToDoItem";
-import toDoStore from "../Stores/ToDoStore";
+import Task from "./Task";
+import tasksStore from "../Stores/TasksStore";
 import { observer } from "mobx-react";
 
 class ToDoList extends Component {
   render() {
-    const list = toDoStore.toDoItems.map(item => (
-      <ToDoItem key={item.id} item={item} />
+    const list = tasksStore.todayTasks.map(item => (
+      <Task key={item.id} item={item} />
     ));
     return (
       <div>

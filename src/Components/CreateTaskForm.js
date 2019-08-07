@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import toDoStore from "../Stores/ToDoStore";
+import tasksStore from "../Stores/TasksStore";
 import Datetime from "react-datetime";
 import "../DatetimePicker.css";
 
@@ -7,16 +7,16 @@ class CreateTaskForm extends Component {
   state = {
     taskText: "",
     taskDetails: "",
-    moment: ""
+    due: ""
   };
   addTask() {
     if (this.state.taskText) {
-      toDoStore.addTask(
+      tasksStore.addTask(
         this.state.taskText,
         this.state.taskDetails,
-        this.state.moment
+        this.state.due
       );
-      this.setState({ taskText: "", taskDetails: "", moment: "" });
+      this.setState({ taskText: "", taskDetails: "", due: "" });
     }
   }
   render() {
@@ -47,9 +47,9 @@ class CreateTaskForm extends Component {
         />
         <Datetime
           defaultValue="Optional Due Date"
-          value={this.state.moment}
+          value={this.state.due}
           onChange={momentObj => {
-            this.setState({ moment: momentObj });
+            this.setState({ due: momentObj });
           }}
         />
         <button className="btn btn-primary" onClick={this.addTask.bind(this)}>

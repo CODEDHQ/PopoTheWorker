@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import TodayList from "./Components/TodayList";
 import FutureList from "./Components/FutureList";
 import CreateTaskForm from "./Components/CreateTaskForm";
-import toDoStore from "./Stores/ToDoStore";
+import tasksStore from "./Stores/TasksStore";
 
 class App extends Component {
   componentDidMount() {
-    toDoStore.retrieveFromLocalStorage();
+    tasksStore.retrieveFromLocalStorage();
   }
   render() {
     return (
