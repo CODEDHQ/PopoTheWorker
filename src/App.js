@@ -3,6 +3,7 @@ import TodayList from "./Components/TodayList";
 import FutureList from "./Components/FutureList";
 import CreateTaskForm from "./Components/CreateTaskForm";
 import tasksStore from "./Stores/TasksStore";
+import { MDBContainer } from "mdbreact";
 
 class App extends Component {
   componentDidMount() {
@@ -10,11 +11,11 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="container">
+      <MDBContainer>
         <CreateTaskForm />
         <TodayList />
         <FutureList />
-      </div>
+      </MDBContainer>
     );
   }
 }

@@ -21,8 +21,11 @@ class Task extends Component {
     if (this.props.item.labels) {
       let labels = this.props.item.labels.map(label => {
         return (
-          <span className="badge badge-pill badge-primary mr-auto">
-            {label.value}
+          <span
+            className="badge badge-pill badge-primary mr-2"
+            key={label.value}
+          >
+            {label.label}
           </span>
         );
       });
