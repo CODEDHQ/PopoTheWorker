@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { faSquare } from "@fortawesome/free-regular-svg-icons";
 import tasksStore from "../Stores/TasksStore";
 import {
   MDBBtn,
@@ -33,7 +30,7 @@ class Task extends Component {
       dueDate = <small>{this.props.item.due.fromNow()}</small>;
     }
     let taskHead;
-    if (this.props.item.labels) {
+    if (this.props.item.labels.length > 0) {
       let labels = this.props.item.labels.map(label => {
         return (
           <span
