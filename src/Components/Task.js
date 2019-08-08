@@ -3,15 +3,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faSquare } from "@fortawesome/free-regular-svg-icons";
 import tasksStore from "../Stores/TasksStore";
-
+import {
+  MDBBtn,
+  MDBModal,
+  MDBModalBody,
+  MDBModalHeader,
+  MDBModalFooter,
+  MDBIcon,
+  MDBCloseIcon
+} from "mdbreact";
 class Task extends Component {
+  state = {
+    modal: false
+  };
   checkTask() {
     tasksStore.doneTask(this.props.item.id);
   }
   deleteTask() {
-    if (window.confirm("Are you sure?"))
-      tasksStore.deleteTask(this.props.item.id);
+    this.toggleModal();
+    tasksStore.deleteTask(this.props.item.id);
   }
+  toggleModal() {
+    this.setState({ modal: !this.state.modal });
+  }
+
   render() {
     let dueDate;
     if (this.props.item.due) {
@@ -33,11 +48,9 @@ class Task extends Component {
         <div>
           <div className="d-flex justify-content-between">
             <div className="flex-row">{labels}</div>
-            <FontAwesomeIcon
+            <MDBCloseIcon
               className="ml-auto"
-              style={{ cursor: "pointer" }}
-              icon={faTimes}
-              onClick={this.deleteTask.bind(this)}
+              onClick={this.toggleModal.bind(this)}
             />
           </div>
           <div className="d-flex justify-content-between">
@@ -70,19 +83,52 @@ class Task extends Component {
             <h5 className="mb-1">{this.props.item.task}</h5>
           </div>
           <div>
-            <FontAwesomeIcon
-              style={{ cursor: "pointer" }}
-              icon={faTimes}
-              onClick={this.deleteTask.bind(this)}
+            <MDBCloseIcon
+              className="ml-auto"
+              onClick={this.toggleModal.bind(this)}
             />
           </div>
         </div>
       );
     return (
-      <div className="list-group-item">
-        {taskHead}
-        <p className="mb-1">{this.props.item.details}</p>
-        {dueDate}
+      <div>
+        <MDBModal
+          modalStyle="danger"
+          className="text-white"
+          size="sm"
+          position="top"
+          isOpen={this.state.modal}
+          toggle={this.toggleModal.bind(this)}
+        >
+          <MDBModalHeader
+            className="text-center"
+            titleClass="w-100"
+            tag="p"
+            toggle={this.toggleModal.bind(this)}
+          >
+            Are you sure?
+          </MDBModalHeader>
+          <MDBModalBody className="text-center">
+            <MDBIcon icon="times" size="4x" pulse className="animated tada" />
+          </MDBModalBody>
+          <MDBModalFooter className="justify-content-center">
+            <MDBBtn color="danger" onClick={this.deleteTask.bind(this)}>
+              Yes
+            </MDBBtn>
+            <MDBBtn
+              color="danger"
+              outline
+              onClick={this.toggleModal.bind(this)}
+            >
+              No
+            </MDBBtn>
+          </MDBModalFooter>
+        </MDBModal>
+        <div className="list-group-item">
+          {taskHead}
+          <p className="mb-1">{this.props.item.details}</p>
+          {dueDate}
+        </div>
       </div>
     );
   }
