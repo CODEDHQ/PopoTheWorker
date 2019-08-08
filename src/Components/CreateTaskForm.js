@@ -46,16 +46,6 @@ class CreateTaskForm extends Component {
   }
 
   render() {
-    let labelOptions = tasksStore.labelOptions.map(label => (
-      <option
-        value={label}
-        selected={
-          this.state.labels.filter(lbl => lbl.value === label).length > 0
-        }
-      >
-        {label}
-      </option>
-    ));
     let options = tasksStore.labelOptions.map(label => {
       return { value: label, label: label };
     });
