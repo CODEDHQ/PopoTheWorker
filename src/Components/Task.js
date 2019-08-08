@@ -55,9 +55,9 @@ class Task extends Component {
           </div>
           <div className="d-flex justify-content-between">
             <div className="d-flex align-items-center">
-              <FontAwesomeIcon
-                style={{ cursor: "pointer" }}
-                icon={faSquare}
+              <MDBIcon
+                far
+                icon="square"
                 size="2x"
                 onClick={this.checkTask.bind(this)}
               />
@@ -72,9 +72,9 @@ class Task extends Component {
       taskHead = (
         <div className="d-flex justify-content-between">
           <div className="d-flex align-items-center">
-            <FontAwesomeIcon
-              style={{ cursor: "pointer" }}
-              icon={faSquare}
+            <MDBIcon
+              far
+              icon="square"
               size="2x"
               onClick={this.checkTask.bind(this)}
             />
