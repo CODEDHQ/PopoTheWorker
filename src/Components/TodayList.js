@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Task from "./Task";
 import tasksStore from "../Stores/TasksStore";
 import { observer } from "mobx-react";
+import { MDBListGroup } from "mdbreact";
 
 class ToDoList extends Component {
   render() {
@@ -11,7 +12,7 @@ class ToDoList extends Component {
     return (
       <div>
         <h3>Today</h3>
-        <div className="list-group">{list}</div>
+        <MDBListGroup>{list}</MDBListGroup>
       </div>
     );
   }

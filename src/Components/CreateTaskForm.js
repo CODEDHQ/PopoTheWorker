@@ -61,45 +61,43 @@ class CreateTaskForm extends Component {
         >
           <MDBModalHeader>Add A New Task</MDBModalHeader>
           <MDBModalBody>
-            <div className="form-group">
-              <MDBInput
-                type="text"
-                label="Task"
-                onKeyPress={e => {
-                  if (e.charCode === 13) {
-                    this.addTask();
-                  }
-                }}
-                onChange={e => this.setState({ taskText: e.target.value })}
-                value={this.state.taskText}
-                placeholder="Task"
-              />
-              <MDBInput
-                type="textarea"
-                label="Details (Optional)"
-                onKeyPress={e => {
-                  if (e.charCode === 13) {
-                    this.addTask();
-                  }
-                }}
-                onChange={e => this.setState({ taskDetails: e.target.value })}
-                placeholder="Optional details"
-                value={this.state.taskDetails}
-              />
-              <Select
-                options={options}
-                isMulti
-                value={this.state.labels}
-                onChange={this.labelSelect.bind(this)}
-              />
-              <Datetime
-                defaultValue="Optional Due Date"
-                value={this.state.due}
-                onChange={momentObj => {
-                  this.setState({ due: momentObj });
-                }}
-              />
-            </div>
+            <MDBInput
+              type="text"
+              label="Task"
+              onKeyPress={e => {
+                if (e.charCode === 13) {
+                  this.addTask();
+                }
+              }}
+              onChange={e => this.setState({ taskText: e.target.value })}
+              value={this.state.taskText}
+              placeholder="Task"
+            />
+            <MDBInput
+              type="textarea"
+              label="Details (Optional)"
+              onKeyPress={e => {
+                if (e.charCode === 13) {
+                  this.addTask();
+                }
+              }}
+              onChange={e => this.setState({ taskDetails: e.target.value })}
+              placeholder="Optional details"
+              value={this.state.taskDetails}
+            />
+            <Select
+              options={options}
+              isMulti
+              value={this.state.labels}
+              onChange={this.labelSelect.bind(this)}
+            />
+            <Datetime
+              defaultValue="Optional Due Date"
+              value={this.state.due}
+              onChange={momentObj => {
+                this.setState({ due: momentObj });
+              }}
+            />
           </MDBModalBody>
           <MDBModalFooter>
             <MDBBtn

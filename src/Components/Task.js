@@ -7,7 +7,8 @@ import {
   MDBModalHeader,
   MDBModalFooter,
   MDBIcon,
-  MDBCloseIcon
+  MDBCloseIcon,
+  MDBListGroupItem
 } from "mdbreact";
 class Task extends Component {
   state = {
@@ -17,10 +18,10 @@ class Task extends Component {
     tasksStore.doneTask(this.props.item.id);
   }
   deleteTask() {
-    this.toggleModal();
+    this.toggleDeleteModal();
     tasksStore.deleteTask(this.props.item.id);
   }
-  toggleModal() {
+  toggleDeleteModal() {
     this.setState({ modal: !this.state.modal });
   }
 
@@ -47,7 +48,7 @@ class Task extends Component {
             <div className="flex-row">{labels}</div>
             <MDBCloseIcon
               className="ml-auto"
-              onClick={this.toggleModal.bind(this)}
+              onClick={this.toggleDeleteModal.bind(this)}
             />
           </div>
           <div className="d-flex justify-content-between">
@@ -82,26 +83,26 @@ class Task extends Component {
           <div>
             <MDBCloseIcon
               className="ml-auto"
-              onClick={this.toggleModal.bind(this)}
+              onClick={this.toggleDeleteModal.bind(this)}
             />
           </div>
         </div>
       );
     return (
-      <div>
+      <MDBListGroupItem>
         <MDBModal
           modalStyle="danger"
           className="text-white"
           size="sm"
           position="top"
           isOpen={this.state.modal}
-          toggle={this.toggleModal.bind(this)}
+          toggle={this.toggleDeleteModal.bind(this)}
         >
           <MDBModalHeader
             className="text-center"
             titleClass="w-100"
             tag="p"
-            toggle={this.toggleModal.bind(this)}
+            toggle={this.toggleDeleteModal.bind(this)}
           >
             Are you sure?
           </MDBModalHeader>
@@ -115,18 +116,16 @@ class Task extends Component {
             <MDBBtn
               color="danger"
               outline
-              onClick={this.toggleModal.bind(this)}
+              onClick={this.toggleDeleteModal.bind(this)}
             >
               No
             </MDBBtn>
           </MDBModalFooter>
         </MDBModal>
-        <div className="list-group-item">
-          {taskHead}
-          <p className="mb-1">{this.props.item.details}</p>
-          {dueDate}
-        </div>
-      </div>
+        {taskHead}
+        <p className="mb-1">{this.props.item.details}</p>
+        {dueDate}
+      </MDBListGroupItem>
     );
   }
 }
