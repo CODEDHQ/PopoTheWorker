@@ -30,9 +30,9 @@ class Task extends Component {
     if (this.props.item.due) {
       dueDate = <small>{this.props.item.due.fromNow()}</small>;
     }
-    let taskHead;
-    if (this.props.item.labels.length > 0) {
-      let labels = this.props.item.labels.map(label => {
+    let labels;
+    if (this.props.item.labels && this.props.item.labels.length > 0) {
+      labels = this.props.item.labels.map(label => {
         return (
           <span
             className="badge badge-pill badge-primary mr-2"
@@ -42,52 +42,7 @@ class Task extends Component {
           </span>
         );
       });
-      taskHead = (
-        <div>
-          <div className="d-flex justify-content-between">
-            <div className="flex-row">{labels}</div>
-            <MDBCloseIcon
-              className="ml-auto"
-              onClick={this.toggleDeleteModal.bind(this)}
-            />
-          </div>
-          <div className="d-flex justify-content-between">
-            <div className="d-flex align-items-center">
-              <MDBIcon
-                far
-                icon="square"
-                size="2x"
-                onClick={this.checkTask.bind(this)}
-              />
-            </div>
-            <div className="flex-grow-1 p-3 text-wrap">
-              <h5 className="mb-1">{this.props.item.task}</h5>
-            </div>
-          </div>
-        </div>
-      );
-    } else
-      taskHead = (
-        <div className="d-flex justify-content-between">
-          <div className="d-flex align-items-center">
-            <MDBIcon
-              far
-              icon="square"
-              size="2x"
-              onClick={this.checkTask.bind(this)}
-            />
-          </div>
-          <div className="flex-grow-1 p-3 text-wrap">
-            <h5 className="mb-1">{this.props.item.task}</h5>
-          </div>
-          <div>
-            <MDBCloseIcon
-              className="ml-auto"
-              onClick={this.toggleDeleteModal.bind(this)}
-            />
-          </div>
-        </div>
-      );
+    }
     return (
       <MDBListGroupItem>
         <MDBModal
@@ -122,7 +77,31 @@ class Task extends Component {
             </MDBBtn>
           </MDBModalFooter>
         </MDBModal>
-        {taskHead}
+        <div className="d-flex justify-content-between">
+          <div className="d-flex align-items-start flex-column">
+            {labels}
+            <div className="d-flex justify-content-start">
+              <div className="align-self-center">
+                <MDBIcon
+                  far
+                  icon="square"
+                  size="2x"
+                  onClick={this.checkTask.bind(this)}
+                />
+              </div>
+              <div className="flex-grow-1 p-3 text-wrap">
+                <h5 className="mb-1">{this.props.item.task}</h5>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <MDBCloseIcon
+              className="ml-auto"
+              onClick={this.toggleDeleteModal.bind(this)}
+            />
+          </div>
+        </div>
         <p className="mb-1">{this.props.item.details}</p>
         {dueDate}
       </MDBListGroupItem>
