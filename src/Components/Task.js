@@ -8,7 +8,8 @@ import {
   MDBModalFooter,
   MDBIcon,
   MDBCloseIcon,
-  MDBListGroupItem
+  MDBListGroupItem,
+  MDBBadge
 } from "mdbreact";
 class Task extends Component {
   state = {
@@ -34,12 +35,9 @@ class Task extends Component {
     if (this.props.item.labels && this.props.item.labels.length > 0) {
       labels = this.props.item.labels.map(label => {
         return (
-          <span
-            className="badge badge-pill badge-primary mr-2"
-            key={label.value}
-          >
+          <MDBBadge pill color="primary">
             {label.label}
-          </span>
+          </MDBBadge>
         );
       });
     }
@@ -94,7 +92,6 @@ class Task extends Component {
               </div>
             </div>
           </div>
-
           <div>
             <MDBCloseIcon
               className="ml-auto"
