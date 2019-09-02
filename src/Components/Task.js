@@ -35,7 +35,7 @@ class Task extends Component {
     if (this.props.item.labels && this.props.item.labels.length > 0) {
       labels = this.props.item.labels.map(label => {
         return (
-          <MDBBadge pill color="primary">
+          <MDBBadge pill color="primary" className="mr-2">
             {label.label}
           </MDBBadge>
         );
@@ -77,7 +77,7 @@ class Task extends Component {
         </MDBModal>
         <div className="d-flex justify-content-between">
           <div className="d-flex align-items-start flex-column">
-            {labels}
+            <div className="flex-row">{labels}</div>
             <div className="d-flex justify-content-start">
               <div className="align-self-center">
                 <MDBIcon
